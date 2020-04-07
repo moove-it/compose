@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMPENV_FILE=.compenv
+
+# Load the compose environment
+if [ -f "$COMPENV_FILE" ]; then
+  source $COMPENV_FILE
+fi
+
+COMPENV="${COMPENV:-dev}"
+
+docker-compose -f docker-compose.yml -f docker-compose.$COMPENV.override.yml up
+
